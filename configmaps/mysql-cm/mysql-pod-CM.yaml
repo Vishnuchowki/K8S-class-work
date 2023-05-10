@@ -1,0 +1,11 @@
+--- 
+apiVersion: v1
+kind: Pod 
+metadata: 
+  name: mysql-config 
+spec: 
+  containers:
+    - image: mysql:8
+      name: mysql
+      envFrom: 
+        - configMapRef: mysql-configmap

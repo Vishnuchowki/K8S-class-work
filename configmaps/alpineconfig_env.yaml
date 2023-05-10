@@ -5,7 +5,7 @@ metadata:
   name: alpine-config-env 
 spec: 
   containers:
-    - image: alpine:1.23
+    - image: alpine
       name: alpine
       envFrom: 
         - configMapRef:

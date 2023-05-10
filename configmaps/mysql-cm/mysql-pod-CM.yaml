@@ -8,4 +8,6 @@ spec:
     - image: mysql:8
       name: mysql
       envFrom: 
-        - configMapRef: mysql-configmap
+        - configMapRef: 
+            name: mysql-configmap
+            optional: false 

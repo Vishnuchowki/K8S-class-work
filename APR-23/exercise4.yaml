@@ -1,0 +1,18 @@
+#write an manifest file for nginx and httpd with port 80 
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exercise4-nginx-httpd 
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      ports: 
+        - containerPort: 80
+          name: nginx-port-80
+    - name: httpd
+      image: httpd:2
+      ports: 
+        - containerPort: 80
+          name: httpd-port-80

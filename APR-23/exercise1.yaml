@@ -1,0 +1,13 @@
+#write an manifest file for nginx
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exercise1-nginx
+spec:
+  containers:
+    - image: nginx
+      name: nginx
+      ports:
+        - containerPort: 80
+          name: nginx-port-80

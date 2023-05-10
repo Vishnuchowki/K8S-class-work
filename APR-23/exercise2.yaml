@@ -1,0 +1,18 @@
+#write an manifest file for nginx  ans alpine with sleep 1d
+--- 
+apiVersion: v1
+kind: Pod
+metadata:
+  name: exercise2-nginx-sleep
+spec:
+  containers:
+    - name: nginx 
+      image: nginx
+      ports: 
+        - containerPort: 80
+          name: nginx-port-80
+    - name: alpine 
+      image: alpine
+      args:
+        - sleep
+        - 1d

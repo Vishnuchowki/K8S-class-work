@@ -1,0 +1,38 @@
+
+***** Steps to create VM in AWS and crete K8s Cluster in VM*****
+
+https://directdevops.blog/2022/12/11/devops-classroomnotes-11-dec-2022-2/ 
+
+
+1) login to VM and install AWS CLI
+
+2) Create an IAM user and make sure you have access & screk acess key handy type "aws config"  and follw the steps
+
+3) Installing or updating kubectl
+
+https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html 
+
+
+or try to follow below 
+
+https://kubernetes.io/docs/tasks/tools/install-kubectl-linux/#install-kubectl-binary-with-curl-on-linux
+
+	*) exit / logout and login 
+	
+	 kubectl version --client
+	 
+
+4) Installing or updating eksctl
+
+https://docs.aws.amazon.com/eks/latest/userguide/eksctl.html 
+
+https://github.com/weaveworks/eksctl/blob/main/README.md#installation
+
+
+	
+5) Install Terraform
+https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli 
+
+
+
+

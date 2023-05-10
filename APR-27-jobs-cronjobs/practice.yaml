@@ -1,0 +1,48 @@
+---------------------
+apiVersion: v1
+kind: Pod
+metadeta: 
+  name: sampejob
+spec: 
+  containers:
+    - image: nginx 
+      name: nginx
+
+---------------------
+apiVersion: batch/v1
+kind: Job
+metadeta: 
+  name: job-job
+spec: 
+  template:
+    metadata: 
+      name: job-templte
+    spec:
+      containers:
+        - name: abc
+          image: abc
+          ports:
+            - containerPort:80
+
+-------------------------
+
+apiVersion: batch/v1
+kind: CronJob
+metadeta:
+  name: cronjob
+spec: 
+  schedule: 0 9 * * MON
+  jobTemplate:
+    metadata:
+      name: jobtemplete-cronjob
+    spec:
+      template:
+        metadata:
+          name: spce2-cron
+        spec:
+          containers:
+            args:
+              - sleep
+              - 3s
+
+

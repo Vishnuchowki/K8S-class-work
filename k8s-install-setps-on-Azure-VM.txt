@@ -1,0 +1,92 @@
+
+***** Steps to create VM in Azure and crete K8s Cluster in VM*****
+==================================================================
+
+1) create a vm in azure and login to vm via gitbash
+=================================================
+
+ssh -i /c/Users/DELL/Desktop/Practice/k8s.pem azureuser@20.62.248.96   ( gitbash) 
+
+curl -L https://aka.ms/InstallAzureCli | bash (https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=script )
+
+source ~/.bashrc
+
+az login and follow the instructions
+
+
+2) K8S installation
+================ 
+az group create --name myResourceGroup --location eastus
+ 
+az aks create -g myResourceGroup -n myAKSCluster --enable-managed-identity --node-count 1 --enable-addons monitoring --enable-msi-auth-for-monitoring  --generate-ssh-keys
+ 
+sudo apt install azure-cli
+
+az group create --name myResourceGroup --location eastus  ( https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli )
+
+az aks create -g myResourceGroup -n myAKSCluster --enable-managed-identity --node-count 1 --enable-addons monitoring --enable-msi-auth-for-monitoring  --generate-ssh-keys
+(https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
+
+az aks install-cli
+
+
+3) If error occurs as below
+========================
+azureuser@K8S:~$ az aks install-cli
+The detected architecture is 'x86_64', which will be regarded as 'amd64' and the corresponding binary will be downloaded. If there is any problem, please download the appropriate binary by yourself.
+Downloading client to "/usr/local/bin/kubectl" from "https://storage.googleapis.com/kubernetes-release/release/v1.27.1/bin/linux/amd64/kubectl"
+Connection error while attempting to download client ([Errno 13] Permission denied: '/usr/local/bin/kubectl')
+
+
+4) Try below steps:
+===============
+
+sudo snap install kubectl --classic
+
+kubectl version --client
+
+
+5) Get credentials
+================
+
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster  ( git bash )
+
+
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster  (powershell)
+
+kubectl get nodes
+
+*****ENV is READY******
+
+
+6) Delete the AKS cluster
+=====================
+az group delete --name myResourceGroup --yes --no-wait 
+
+
+If any error, follow below steps
+
+
+ I'm a AWS user, trying AKS now. I have login to VM and trying to create resource group for AKS and getting below error for subscription. Can you help to solve?
+
+
+
+Found solution,  We need to register the resource with below documentation ling and command.
+Here, we are missing "microsoft.insights" resource, hence with the help of 
+this https://learn.microsoft.com/en-us/azure/azure-resource-manager/troubleshooting/error-register-resource-provider?tabs=azure-cli 
+documentation,  az provider register --namespace Microsoft.Cdn, 
+we need to change the namespace to "microsoft.insights" , as " az provider register --namespace microsoft.insights".
+
+
+To increase no of nodes while cluster is live
+==============================================
+
+Source: https://learn.microsoft.com/en-us/azure/aks/scale-cluster?tabs=azure-cli
+
+ex: First, look at the existing information
+
+az aks show --resource-group myResourceGroup --name myAKSCluster --query agentPoolProfiles
+
+az aks scale --resource-group myResourceGroup --name myAKSCluster --node-count 1 --nodepool-name <your node pool name> {from above node information}
+ex: az aks scale --resource-group myResourceGroup --name myAKSCluster --node-count 2 --nodepool-name nodepool1 
+

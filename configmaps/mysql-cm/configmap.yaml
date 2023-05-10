@@ -4,6 +4,7 @@ kind: ConfigMap
 metadata: 
   name: mysql-configmap
 data:
+  MYSQL_DATABASE: nop
   MYSQL_ROOT_PASSWORD: rootroot
   MYSQL_USER: vcdevops
   MYSQL_PASSWORD: rootroot

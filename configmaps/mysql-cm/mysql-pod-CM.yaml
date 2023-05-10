@@ -11,3 +11,5 @@ spec:
         - configMapRef: 
             name: mysql-configmap
             optional: false 
+      ports:
+        - containerPort: 3306

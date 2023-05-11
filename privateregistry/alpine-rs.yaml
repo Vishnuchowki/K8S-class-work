@@ -1,0 +1,38 @@
+--- 
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: alpine-pvtregistry
+spec:
+  minReadySeconds: 1
+  replicas: 3
+  selector:
+    matchLabels:
+      app: alpine
+  template: 
+    metadata:
+      name: alpine-pod
+      labels:
+        app: alpine
+    spec:
+      containers:
+        - name: alpine
+          image: 736644755789.dkr.ecr.eu-north-1.amazonaws.com/vcdevops:latest
+          args:
+            - sleep
+            - 1d 
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+          resources:
+            requests:
+              memory: "65Mi"
+              cpu: "250m"
+            limits:
+              memory: "256Mi"
+              cpu: "1000m"

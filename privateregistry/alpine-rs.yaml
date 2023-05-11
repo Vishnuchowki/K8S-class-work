@@ -37,5 +37,5 @@ spec:
               memory: "256Mi"
               cpu: "1000m"
       imagePullSecrets:
-        - name: regcred
+        - name: docker-cfg
  

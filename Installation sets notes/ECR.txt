@@ -1,0 +1,42 @@
+
+
+ECR Creation
+============
+
+1)	Install aws cli
+
+2) 	Install docker 
+
+3) Create a private ECR - https://eu-north-1.console.aws.amazon.com/ecr/repositories?region=eu-north-1
+ 
+
+Create a sample dockerfile
+==========================
+
+FROM alpine
+label author=vishnu
+
+
+To authenticate Docker to an Amazon ECR private registry with the CLI
+======================================================================
+
+aws ecr get-login-password --region region | docker login --username AWS --password-stdin aws_account_id.dkr.ecr.region.amazonaws.com
+
+aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin 736644755789.dkr.ecr.eu-north-1.amazonaws.com
+
+
+Following to this, create a docker image and push to ECR private registry as suggested or guided in "VIEW PUSH COMMANDS" in ECR repository page, https://eu-north-1.console.aws.amazon.com/ecr/repositories/private/736644755789/vcdevops?region=eu-north-1
+
+
+
+
+
+
+Kubernetes create secret from docker config:
+===========================================
+
+cat ~/.docker/config.json
+
+kubectl create secret generic docker-cfg --from-file=.dockerconfigjson=$HOME/.docker/config.json --type=kubernetes.io/dockerconfigjso
+
+

@@ -1,0 +1,12 @@
+---
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscalarc
+metadata:
+  name: dashboard-pod
+spec: 
+  minReplicas: 1
+  maxReplicas: 10
+  scaleTargetRef: 
+    kind: Deployment 
+    name: dashboard-deployment
+  targetCPUUtilizationPercentage: 60 

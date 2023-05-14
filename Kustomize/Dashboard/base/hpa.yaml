@@ -1,6 +1,6 @@
 ---
 apiVersion: autoscaling/v1
-kind: HorizontalPodAutoscalarc
+kind: HorizontalPodAutoscaler
 metadata:
   name: dashboard-pod
 spec: 

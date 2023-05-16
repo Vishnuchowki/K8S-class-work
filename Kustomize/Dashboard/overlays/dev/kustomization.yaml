@@ -7,4 +7,4 @@ namePrefix: dev-
 labels:
   - pairs:
       env: dev
-      version: "1.o.o"
+      version: "1.0"

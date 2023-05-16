@@ -7,4 +7,4 @@ namePrefix: uat-
 labels:
   - pairs:
       env: uat
-      version: "3.o.o"
+      version: "3.0"

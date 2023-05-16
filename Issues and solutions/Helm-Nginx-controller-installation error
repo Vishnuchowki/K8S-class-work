@@ -1,0 +1,16 @@
+Steps to install helm- nginx-controller
+=======================================
+
+helm repo add nginx-stable https://helm.nginx.com/stable
+helm repo update
+helm upgrade --install ingress-nginx ingress-nginx \
+             --repo https://kubernetes.github.io/ingress-nginx \
+             --namespace ingress-nginx --create-namespace
+
+error: Error: Kubernetes cluster unreachable: exec plugin: invalid apiVersion "client.authentication.k8s.io/v1alpha1"
+
+Solution: curl -L https://git.io/get_helm.sh | bash -s -- --version v3.8.2
+
+![Preview](C:\Users\DELL\Downloads\helm-nginx-controller.png)
+
+

@@ -5,6 +5,7 @@ metadata:
   name: test-Kustomization
 
 resources:
+  - namespaces.yaml
   - deployment.yaml
   - service.yaml
   - hpa.yaml 

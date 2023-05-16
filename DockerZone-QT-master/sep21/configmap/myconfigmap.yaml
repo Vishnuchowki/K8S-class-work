@@ -1,0 +1,13 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm-demo
+data:
+  ui.properties: |
+    color.foreground=white
+    color.background=black
+  retries: "5"
+  ui.properties.filename: 'ui.properties'
+  debug: verbose
+  download_url: "https://directdevops.blog"
